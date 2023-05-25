@@ -29,7 +29,7 @@ def onClose():
 
 
 def about():
-    webbrowser.open("https://github.com/AdeebIsmail/PythonTextEditor")
+    webbrowser.open("https://github.com/AdeebIsmail/ImageMetaData")
 
 
 def uploadFile():
@@ -59,22 +59,23 @@ def uploadFile():
                 title="Error", message="No metadata for this image", )
         else:
 
-            scrollbarV = Scrollbar(frame_left, orient="vertical")
-            scrollbarV.grid(column=0, row=0, sticky=N+S+E)
-
             scrollbarH = Scrollbar(window, orient='horizontal')
             scrollbarH.grid(column=0, row=6, sticky=EW)
 
             mylist = Listbox(window, height=800, width=50)
 
-            mylist.configure(yscrollcommand=scrollbarV.set)
-            scrollbarV.config(command=mylist.yview)
             mylist.configure(xscrollcommand=scrollbarH.set)
             scrollbarH.config(command=mylist.xview)
 
             for key, value in metadata.items():
                 mylist.insert(END, str(key) + ": " + str(value))
             mylist.grid(column=0, row=0, sticky=N+S+E)
+
+            scrollbarV = Scrollbar(window, orient="vertical")
+            scrollbarV.grid(column=0, row=0, sticky=N+S+E)
+
+            mylist.configure(yscrollcommand=scrollbarV.set)
+            scrollbarV.config(command=mylist.yview)
 
     except:
         messagebox.showerror(
